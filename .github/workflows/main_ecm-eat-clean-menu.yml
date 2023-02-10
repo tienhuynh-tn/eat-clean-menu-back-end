@@ -12,20 +12,22 @@ jobs:
 
     steps:
       - name: Check-out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
 
       - name: Set up Java version
         uses: actions/setup-java@v1
         with:
-          java-version: '8'
+          distribution: 'temurin'
+          cache: maven
+          java-version: 1.8
 
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn -B package --file pom.xml
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: java-app
+          name: eat-clean-menu
           path: '${{ github.workspace }}/target/*.jar'
 
   deploy:
@@ -39,7 +41,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: java-app
+          name: eat-clean-menu
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
