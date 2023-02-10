@@ -1,0 +1,38 @@
+package com.happy3friends.eatcleanmenubackend.controller;
+
+import com.happy3friends.eatcleanmenubackend.dto.DishDTO;
+import com.happy3friends.eatcleanmenubackend.service.DishService;
+import io.swagger.annotations.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/v1/dishes")
+@Api(value = "Dish API", description = "Provides Dish API's", tags = "Dish API")
+public class DishController {
+
+    @Autowired
+    private DishService dishService;
+
+    @ApiOperation(value = "Find a dish")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 404, message = "Resource Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
+    @GetMapping(value = "/{dishId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<DishDTO> findById(
+            @ApiParam(value = "A specific dish id",
+                    required = true,
+                    example = "1")
+            @PathVariable("dishId") int dishId) {
+        DishDTO dishDTO = dishService.findById(dishId);
+
+        return ResponseEntity.ok(dishDTO);
+    }
+}
