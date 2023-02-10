@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/dishes")
+@RequestMapping("/dishes")
 @Api(value = "Dish API", description = "Provides Dish API's", tags = "Dish API")
 public class DishController {
 
