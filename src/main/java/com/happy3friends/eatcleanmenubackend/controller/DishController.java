@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/dishes")
 @Api(value = "Dish API", description = "Provides Dish API's", tags = "Dish API")
@@ -18,6 +20,19 @@ public class DishController {
 
     @Autowired
     private DishService dishService;
+
+    @ApiOperation(value = "Find all dishes")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 404, message = "Resource Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
+    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<DishDTO>> findAll() {
+        List<DishDTO> dishDTOS = dishService.findAll();
+
+        return ResponseEntity.ok(dishDTOS);
+    }
 
     @ApiOperation(value = "Find a dish")
     @ApiResponses(value = {
