@@ -1,9 +1,12 @@
 package com.happy3friends.eatcleanmenubackend.controller;
 
 import com.happy3friends.eatcleanmenubackend.dto.DishDTO;
+import com.happy3friends.eatcleanmenubackend.dto.ResponseDTO;
+import com.happy3friends.eatcleanmenubackend.response.ResponseEntityBuilder;
 import com.happy3friends.eatcleanmenubackend.service.DishService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,10 +31,14 @@ public class DishController {
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<DishDTO>> findAll() {
+    public ResponseEntity<ResponseDTO<List<DishDTO>>> findAll() {
         List<DishDTO> dishDTOS = dishService.findAll();
 
-        return ResponseEntity.ok(dishDTOS);
+        return ResponseEntityBuilder.generateResponse(
+                "Find all dishes successfully!",
+                HttpStatus.OK,
+                dishDTOS
+        );
     }
 
     @ApiOperation(value = "Find a dish")
@@ -41,13 +48,17 @@ public class DishController {
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     @GetMapping(value = "/{dishId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DishDTO> findById(
+    public ResponseEntity<ResponseDTO<DishDTO>> findById(
             @ApiParam(value = "A specific dish id",
                     required = true,
                     example = "1")
-            @PathVariable("dishId") int dishId) {
+            @PathVariable("dishId") int dishId) throws Exception {
         DishDTO dishDTO = dishService.findById(dishId);
 
-        return ResponseEntity.ok(dishDTO);
+        return ResponseEntityBuilder.generateResponse(
+                "Find a dish by Id successfully!",
+                HttpStatus.OK,
+                dishDTO
+        );
     }
 }

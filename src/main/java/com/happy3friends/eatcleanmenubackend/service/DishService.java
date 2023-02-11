@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface DishService {
     List<DishDTO> findAll();
-    DishDTO findById(int dishId);
+    DishDTO findById(int dishId) throws Exception;
 }
