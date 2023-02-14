@@ -1,15 +1,14 @@
 package com.happy3friends.eatcleanmenubackend.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Date;
 
 @Data
 @Entity
-@Table(name = "Menu_Dish", schema = "dbo", catalog = "ECM")
-public class MenuDishEntity implements Serializable {
+@Table(name = "Menu_Dish", schema = "dbo", catalog = "ecm")
+public class MenuDishEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "Id", nullable = false)
@@ -29,4 +28,5 @@ public class MenuDishEntity implements Serializable {
     @Basic
     @Column(name = "Status", nullable = true, length = 20)
     private String status;
+
 }

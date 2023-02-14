@@ -1,12 +1,12 @@
 package com.happy3friends.eatcleanmenubackend.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "Recipe", schema = "dbo", catalog = "ECM")
+@Table(name = "Recipe", schema = "dbo", catalog = "ecm")
 public class RecipeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -21,4 +21,5 @@ public class RecipeEntity {
     @Basic
     @Column(name = "Description", nullable = false, length = -1)
     private String description;
+
 }

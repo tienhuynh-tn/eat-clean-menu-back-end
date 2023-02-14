@@ -1,13 +1,13 @@
 package com.happy3friends.eatcleanmenubackend.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
 
 @Data
 @Entity
-@Table(name = "User", schema = "dbo", catalog = "ECM")
+@Table(name = "User", schema = "dbo", catalog = "ecm")
 public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -43,4 +43,5 @@ public class UserEntity {
     @Basic
     @Column(name = "SubscriptionDate", nullable = true)
     private Date subscriptionDate;
+
 }
