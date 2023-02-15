@@ -14,13 +14,13 @@ public class MenuEntity {
     @Column(name = "Id", nullable = false)
     private int id;
     @Basic
-    @Column(name = "UserGmail", nullable = false, length = 100)
-    private String userGmail;
-    @Basic
     @Column(name = "MenuPeriodStartDate", nullable = true)
     private Date menuPeriodStartDate;
     @Basic
     @Column(name = "MenuPeriodEndDate", nullable = true)
     private Date menuPeriodEndDate;
+    @Basic
+    @Column(name = "UserId", nullable = false)
+    private int userId;
 
 }

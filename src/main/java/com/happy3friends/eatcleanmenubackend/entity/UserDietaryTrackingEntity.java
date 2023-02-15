@@ -14,9 +14,6 @@ public class UserDietaryTrackingEntity {
     @Column(name = "Id", nullable = false)
     private int id;
     @Basic
-    @Column(name = "UserGmail", nullable = false, length = 100)
-    private String userGmail;
-    @Basic
     @Column(name = "Datetime", nullable = false)
     private Date datetime;
     @Basic
@@ -25,5 +22,8 @@ public class UserDietaryTrackingEntity {
     @Basic
     @Column(name = "UserCalories", nullable = true, precision = 0)
     private Double userCalories;
+    @Basic
+    @Column(name = "UserId", nullable = false)
+    private int userId;
 
 }

@@ -52,7 +52,7 @@ public class DishController {
             @ApiParam(value = "A specific dish id",
                     required = true,
                     example = "1")
-            @PathVariable("dishId") int dishId) throws Exception {
+            @PathVariable("dishId") int dishId) {
         DishDTO dishDTO = dishService.findById(dishId);
 
         return ResponseEntityBuilder.generateResponse(

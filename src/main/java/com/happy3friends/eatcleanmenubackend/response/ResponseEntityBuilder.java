@@ -2,11 +2,10 @@ package com.happy3friends.eatcleanmenubackend.response;
 
 import com.happy3friends.eatcleanmenubackend.dto.ErrorResponseDTO;
 import com.happy3friends.eatcleanmenubackend.dto.ResponseDTO;
-import com.happy3friends.eatcleanmenubackend.util.DateTimeUtil;
+import com.happy3friends.eatcleanmenubackend.utils.DateTimeUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class ResponseEntityBuilder {

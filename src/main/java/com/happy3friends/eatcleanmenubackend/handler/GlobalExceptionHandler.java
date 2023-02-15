@@ -4,6 +4,7 @@ import com.happy3friends.eatcleanmenubackend.dto.ErrorResponseDTO;
 import com.happy3friends.eatcleanmenubackend.exception.BadRequestException;
 import com.happy3friends.eatcleanmenubackend.exception.InternalServerException;
 import com.happy3friends.eatcleanmenubackend.exception.NotFoundException;
+import com.happy3friends.eatcleanmenubackend.exception.OAuth2AuthenticationProcessingException;
 import com.happy3friends.eatcleanmenubackend.response.ResponseEntityBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,5 +38,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         details.add(ex.getMessage());
 
         return ResponseEntityBuilder.generateErrorResponse("Bad Requests!", HttpStatus.BAD_REQUEST, details);
+    }
+
+    @ExceptionHandler(OAuth2AuthenticationProcessingException.class)
+    public ResponseEntity<ErrorResponseDTO> handleOAuth2AuthenticationProcessingException(OAuth2AuthenticationProcessingException ex) {
+        List<String> details = new ArrayList<>();
+        details.add(ex.getMessage());
+
+        return ResponseEntityBuilder.generateErrorResponse("Unauthorized", HttpStatus.UNAUTHORIZED, details);
     }
 }

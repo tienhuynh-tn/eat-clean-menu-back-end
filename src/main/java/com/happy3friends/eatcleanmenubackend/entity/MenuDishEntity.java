@@ -20,8 +20,8 @@ public class MenuDishEntity {
     @Column(name = "DishId", nullable = false)
     private int dishId;
     @Basic
-    @Column(name = "MealDay", nullable = false)
-    private Date mealDay;
+    @Column(name = "MealDate", nullable = false)
+    private Date mealDate;
     @Basic
     @Column(name = "MealTime", nullable = false, length = 10)
     private String mealTime;

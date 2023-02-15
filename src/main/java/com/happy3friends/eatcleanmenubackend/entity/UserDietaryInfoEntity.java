@@ -13,9 +13,6 @@ public class UserDietaryInfoEntity {
     @Column(name = "Id", nullable = false)
     private int id;
     @Basic
-    @Column(name = "UserGmail", nullable = false, length = 100)
-    private String userGmail;
-    @Basic
     @Column(name = "DietTarget", nullable = false, length = 20)
     private String dietTarget;
     @Basic
@@ -36,5 +33,8 @@ public class UserDietaryInfoEntity {
     @Basic
     @Column(name = "BMR", nullable = false, precision = 0)
     private double bmr;
+    @Basic
+    @Column(name = "UserId", nullable = false)
+    private int userId;
 
 }

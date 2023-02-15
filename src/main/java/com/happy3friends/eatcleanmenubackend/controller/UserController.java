@@ -1,22 +1,29 @@
 package com.happy3friends.eatcleanmenubackend.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
+import com.happy3friends.eatcleanmenubackend.entity.UsersEntity;
+import com.happy3friends.eatcleanmenubackend.exception.NotFoundException;
+import com.happy3friends.eatcleanmenubackend.repository.UserRepository;
+import com.happy3friends.eatcleanmenubackend.security.CurrentUser;
+import com.happy3friends.eatcleanmenubackend.security.UserPrincipal;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/users")
-@Api(value = "User API", description = "Provides all User's APIs", tags = "User API")
+@ApiIgnore
 public class UserController {
 
-    /*@ApiOperation(value = "Check specific users already been in the system")
-    @PostMapping(value = "/check-login", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity checkLogin() {
-        return ResponseEntity.ok();
-    }*/
+    @Autowired
+    private UserRepository userRepository;
 
+    @GetMapping("/me")
+    @PreAuthorize("hasRole('USER')")
+    public UsersEntity getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {
+        return userRepository.findById(String.valueOf(userPrincipal.getId()))
+                .orElseThrow(() -> new NotFoundException("User", "id", userPrincipal.getId()));
+    }
 }

@@ -1,0 +1,5 @@
+spring:
+    datasource:
+        password: tien-phuong-12345
+        url: jdbc:sqlserver://ecm-happy-3-friends.database.windows.net:1433;database=ecm;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+        username: admin-ecm@ecm-happy-3-friends

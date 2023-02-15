@@ -1,16 +1,20 @@
 package com.happy3friends.eatcleanmenubackend.entity;
 
+import com.happy3friends.eatcleanmenubackend.constants.AuthProvider;
 import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
 
 @Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "User", schema = "dbo", catalog = "ecm")
-public class UserEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
+@Table(name = "Users", schema = "dbo", catalog = "ecm")
+public class UsersEntity {
+    @Basic
     @Column(name = "Gmail", nullable = false, length = 100)
     private String gmail;
     @Basic
@@ -43,5 +47,13 @@ public class UserEntity {
     @Basic
     @Column(name = "SubscriptionDate", nullable = true)
     private Date subscriptionDate;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
+    private int id;
 
+    @Enumerated(EnumType.STRING)
+    @Transient private AuthProvider provider;
+
+    @Transient private String providerId;
 }
