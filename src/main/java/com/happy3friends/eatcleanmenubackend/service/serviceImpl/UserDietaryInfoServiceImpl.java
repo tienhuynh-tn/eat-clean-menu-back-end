@@ -18,11 +18,17 @@ public class UserDietaryInfoServiceImpl implements UserDietaryInfoService {
 
     @Override
     public void createUserDietaryInfoByUserId(UserDietaryInfoDTO userDietaryInfoDTO, int userId) {
+        UserDietaryInfoEntity existed = userDietaryInfoRepository.findByUserId(userId);
+        if (existed != null) {
+            userDietaryInfoDTO.setId(existed.getId());
+            userDietaryInfoDTO.setUserId(userId);
+            UserDietaryInfoEntity newInfo = mapper.convertDTOToEntity(userDietaryInfoDTO);
+            userDietaryInfoRepository.save(newInfo);
+            return;
+        }
 
         userDietaryInfoDTO.setUserId(userId);
-
         UserDietaryInfoEntity userDietaryInfoEntity = mapper.convertDTOToEntity(userDietaryInfoDTO);
-
         userDietaryInfoRepository.save(userDietaryInfoEntity);
     }
 }

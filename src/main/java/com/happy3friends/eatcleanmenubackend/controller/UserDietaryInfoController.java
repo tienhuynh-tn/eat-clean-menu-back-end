@@ -1,15 +1,12 @@
 package com.happy3friends.eatcleanmenubackend.controller;
 
-import com.happy3friends.eatcleanmenubackend.dto.ResponseDTO;
 import com.happy3friends.eatcleanmenubackend.dto.UserDietaryInfoDTO;
-import com.happy3friends.eatcleanmenubackend.response.ResponseEntityBuilder;
 import com.happy3friends.eatcleanmenubackend.security.TokenProvider;
 import com.happy3friends.eatcleanmenubackend.service.UserDietaryInfoService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
