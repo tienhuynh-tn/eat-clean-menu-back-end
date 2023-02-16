@@ -36,9 +36,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Transactional
-    public UserDetails loadUserById(Long id) {
-        UsersEntity user = userRepository.findById(String.valueOf(id)).orElseThrow(
-                () -> new NotFoundException("User", "id", id)
+    public UserDetails loadUserById(int id) {
+        UsersEntity user = userRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("User", "id", id)
         );
 
         return UserPrincipal.create(user);

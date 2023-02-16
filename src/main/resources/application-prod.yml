@@ -3,3 +3,12 @@ spring:
         password: tien-phuong-12345
         url: jdbc:sqlserver://ecm-happy-3-friends.database.windows.net:1433;database=ecm;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
         username: admin-ecm@ecm-happy-3-friends
+
+app:
+    oauth2:
+        # After successfully authenticating with the OAuth2 Provider,
+        # we'll be generating an auth token for the user and sending the token to the
+        # redirectUri mentioned by the client in the /oauth2/authorize request.
+        # We're not using cookies because they won't work well in mobile clients.
+        authorizedRedirectUris:
+            - https://ecm-eat-clean-menu.azurewebsites.net/api/v1/auth/login

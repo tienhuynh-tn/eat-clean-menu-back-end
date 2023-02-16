@@ -47,7 +47,7 @@ public class JWTDecodeUtil {
     }
     */
 
-    public static Jws<Claims> parseJwt(String jwtString) {
+    public static Jws<Claims> parseJwt(String token) {
 
         String secret = "AD54AEBF234949FA7CC10A5F1D12A8AF8D22F4EA47DDC400C4DAE19C14932523pNMY6mJhUVe7Ou5DTp77OMu585lb0awp5vAncf2bZIiQpntC4cVIRp8cLxjQUq7";
         Key hmacKey = new SecretKeySpec(Base64.getDecoder().decode(secret),
@@ -56,7 +56,7 @@ public class JWTDecodeUtil {
         Jws<Claims> jwt = Jwts.parserBuilder()
                 .setSigningKey(hmacKey)
                 .build()
-                .parseClaimsJws(jwtString);
+                .parseClaimsJws(token);
 
         return jwt;
     }

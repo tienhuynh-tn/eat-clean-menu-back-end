@@ -2,6 +2,7 @@ package com.happy3friends.eatcleanmenubackend.security;
 
 import com.happy3friends.eatcleanmenubackend.config.AppProperties;
 import com.happy3friends.eatcleanmenubackend.utils.DateTimeUtil;
+import com.happy3friends.eatcleanmenubackend.utils.JWTDecodeUtil;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +37,7 @@ public class TokenProvider {
         Date expiryDate = new Date(now.getTime() + appProperties.getAuth().getTokenExpirationMsec());
 
         return Jwts.builder()
-                .setSubject(userPrincipal.getAttribute("sub"))
+                .setSubject(String.valueOf(userPrincipal.getId()))
                 .setIssuedAt(DateTimeUtil.convertZoneDateTimeToDate(DateTimeUtil.getZoneDateTimeNow()))
                 .setExpiration(expiryDate)
                 .signWith(SignatureAlgorithm.HS512, appProperties.getAuth().getTokenSecret())
@@ -47,13 +48,10 @@ public class TokenProvider {
                 .compact();
     }
 
-    public Long getUserIdFromToken(String token) {
-        Claims claims = Jwts.parser()
-                .setSigningKey(appProperties.getAuth().getTokenSecret())
-                .parseClaimsJws(token)
-                .getBody();
+    public int getUserIdFromToken(String token) {
+        Jws<Claims> jwt = JWTDecodeUtil.parseJwt(token);
 
-        return Long.parseLong(claims.getSubject());
+        return Integer.parseInt(jwt.getBody().getSubject());
     }
 
     public boolean validateToken(String authToken) {

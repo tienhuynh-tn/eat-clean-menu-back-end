@@ -23,7 +23,7 @@ public class UserController {
     @GetMapping("/me")
     @PreAuthorize("hasRole('USER')")
     public UsersEntity getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {
-        return userRepository.findById(String.valueOf(userPrincipal.getId()))
+        return userRepository.findById(userPrincipal.getId())
                 .orElseThrow(() -> new NotFoundException("User", "id", userPrincipal.getId()));
     }
 }

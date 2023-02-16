@@ -17,13 +17,13 @@ import java.util.Map;
  * to perform authentication and authorization.
  */
 public class UserPrincipal implements OAuth2User, UserDetails {
-    private Long id;
+    private int id;
     private String email;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
     private Map<String, Object> attributes;
 
-    public UserPrincipal(Long id, String email, Collection<? extends GrantedAuthority> authorities) {
+    public UserPrincipal(int id, String email, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.email = email;
         this.authorities = authorities;
@@ -34,7 +34,7 @@ public class UserPrincipal implements OAuth2User, UserDetails {
                 singletonList(new SimpleGrantedAuthority("ROLE_USER"));
 
         return new UserPrincipal(
-                (long) user.getId(),
+                user.getId(),
                 user.getGmail(),
                 authorities
         );
@@ -46,7 +46,7 @@ public class UserPrincipal implements OAuth2User, UserDetails {
         return userPrincipal;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
