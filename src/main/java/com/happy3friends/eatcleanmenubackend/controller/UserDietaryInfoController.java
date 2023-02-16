@@ -32,19 +32,14 @@ public class UserDietaryInfoController {
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ResponseDTO<UserDietaryInfoDTO>> create(
+    @ResponseStatus(HttpStatus.CREATED)
+    public void create(
             @RequestHeader("Authorization") @ApiIgnore String bearerToken,
-            @ApiParam(value = "A JSON value representing a User Dietary Info.")
+            @ApiParam(value = "A JSON value representing a User Dietary Info. Please remove id and userId in the example model below!!!")
             @RequestBody UserDietaryInfoDTO userDietaryInfoDTO) {
 
         int userId = tokenProvider.getUserIdFromToken(tokenProvider.getTokenFromBearerToken(bearerToken));
 
         userDietaryInfoService.createUserDietaryInfoByUserId(userDietaryInfoDTO, userId);
-
-        return ResponseEntityBuilder.generateResponse(
-                "Create User Dietary Information successfully!",
-                HttpStatus.CREATED,
-                userDietaryInfoDTO
-        );
     }
 }
