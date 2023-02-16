@@ -1,29 +1,47 @@
 package com.happy3friends.eatcleanmenubackend.controller;
 
-import com.happy3friends.eatcleanmenubackend.entity.UsersEntity;
-import com.happy3friends.eatcleanmenubackend.exception.NotFoundException;
-import com.happy3friends.eatcleanmenubackend.repository.UserRepository;
-import com.happy3friends.eatcleanmenubackend.security.CurrentUser;
-import com.happy3friends.eatcleanmenubackend.security.UserPrincipal;
+import com.happy3friends.eatcleanmenubackend.security.TokenProvider;
+import com.happy3friends.eatcleanmenubackend.service.UserService;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/users")
-@ApiIgnore
+@Api(value = "User API", description = "Provides User API's", tags = "User API")
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
-    @GetMapping("/me")
+    @Autowired
+    private TokenProvider tokenProvider;
+
+    @ApiOperation(value = "Create User Subscription")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
+    @PutMapping(value = "/subscriptionType")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void createUserSubscription(
+            @RequestHeader("Authorization") @ApiIgnore String bearerToken,
+            @ApiParam(value = "User Subscription Info.", example = "1 tháng")
+            @RequestParam(name = "subscriptionType") String subscriptionType) {
+
+        int userId = tokenProvider.getUserIdFromToken(tokenProvider.getTokenFromBearerToken(bearerToken));
+
+        userService.createUserSubscriptionByUserId(subscriptionType, userId);
+    }
+
+    /*@GetMapping("/me")
     @PreAuthorize("hasRole('USER')")
     public UsersEntity getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {
         return userRepository.findById(userPrincipal.getId())
                 .orElseThrow(() -> new NotFoundException("User", "id", userPrincipal.getId()));
-    }
+    }*/
 }

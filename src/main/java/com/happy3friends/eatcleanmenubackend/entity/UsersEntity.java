@@ -56,4 +56,7 @@ public class UsersEntity {
     @Transient private AuthProvider provider;
 
     @Transient private String providerId;
+    @Basic
+    @Column(name = "SubscriptionType", nullable = true, length = 20)
+    private String subscriptionType;
 }

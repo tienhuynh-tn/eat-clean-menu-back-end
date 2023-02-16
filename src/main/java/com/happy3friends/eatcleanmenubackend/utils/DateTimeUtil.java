@@ -13,4 +13,8 @@ public class DateTimeUtil {
     public static Date convertZoneDateTimeToDate(ZonedDateTime zonedDateTime) {
         return Date.from(zonedDateTime.toInstant());
     }
+
+    public static Date getDateNow() {
+        return convertZoneDateTimeToDate(getZoneDateTimeNow());
+    }
 }
