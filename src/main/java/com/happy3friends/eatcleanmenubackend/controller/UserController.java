@@ -19,7 +19,7 @@ public class UserController {
     @Autowired
     private TokenProvider tokenProvider;
 
-    @ApiOperation(value = "Create User Subscription")
+    @ApiOperation(value = "Update User Subscription")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Created"),
             @ApiResponse(code = 400, message = "Bad request"),

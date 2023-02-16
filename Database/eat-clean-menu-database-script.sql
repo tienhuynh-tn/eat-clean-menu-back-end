@@ -17,7 +17,8 @@ CREATE TABLE [Users] (
     Province NVARCHAR(50) NULL,
     Avatar NTEXT NULL,
     SubscriptionStatus VARCHAR(20) NULL,
-    SubscriptionDate DATETIME NULL
+    SubscriptionDate DATETIME NULL,
+    SubscriptionType NVARCHAR(20) NULL
 )
 GO;
 
