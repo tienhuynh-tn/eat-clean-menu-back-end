@@ -8,7 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -46,6 +48,13 @@ public class TokenProvider {
                 .claim("Fullname", userPrincipal.getAttribute("name"))
                 .claim("Avatar", userPrincipal.getAttribute("picture"))
                 .compact();
+    }
+
+    public String getTokenFromBearerToken(String bearerToken) {
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7, bearerToken.length());
+        }
+        return null;
     }
 
     public int getUserIdFromToken(String token) {
