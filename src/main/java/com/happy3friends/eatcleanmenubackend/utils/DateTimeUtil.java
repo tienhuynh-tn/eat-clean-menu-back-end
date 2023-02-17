@@ -1,5 +1,6 @@
 package com.happy3friends.eatcleanmenubackend.utils;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,6 +21,10 @@ public class DateTimeUtil {
 
     public static Date getDateNow() {
         return convertZoneDateTimeToDate(getZoneDateTimeNow());
+    }
+
+    public static Timestamp getTimestampNow() {
+        return new Timestamp(convertZoneDateTimeToDate(getZoneDateTimeNow()).getTime());
     }
 
     public static Date addDays(Date date, int days)

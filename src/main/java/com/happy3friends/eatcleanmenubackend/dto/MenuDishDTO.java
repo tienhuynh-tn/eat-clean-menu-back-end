@@ -12,6 +12,7 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MenuDishDTO {
+    private int id;
     private int dishId;
     private Date mealDate;
     private String mealTime;

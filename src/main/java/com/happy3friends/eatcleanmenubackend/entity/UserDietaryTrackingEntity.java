@@ -4,8 +4,12 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "UserDietaryTracking", schema = "dbo", catalog = "ecm")
 public class UserDietaryTrackingEntity {
@@ -15,7 +19,7 @@ public class UserDietaryTrackingEntity {
     private int id;
     @Basic
     @Column(name = "Datetime", nullable = false)
-    private Date datetime;
+    private Timestamp datetime;
     @Basic
     @Column(name = "UserWeight", nullable = true, precision = 0)
     private Double userWeight;
