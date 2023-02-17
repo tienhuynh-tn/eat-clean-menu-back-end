@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
 @Entity
 @Table(name = "Recipe", schema = "dbo", catalog = "ecm")
 public class RecipeEntity {
@@ -21,5 +23,7 @@ public class RecipeEntity {
     @Basic
     @Column(name = "Description", nullable = false, length = -1)
     private String description;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DishId", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
+    private DishEntity dishByDishId;
 }

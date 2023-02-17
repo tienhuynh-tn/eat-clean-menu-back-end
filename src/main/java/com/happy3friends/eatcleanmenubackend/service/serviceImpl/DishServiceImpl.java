@@ -2,11 +2,14 @@ package com.happy3friends.eatcleanmenubackend.service.serviceImpl;
 
 import com.happy3friends.eatcleanmenubackend.dto.DishDTO;
 import com.happy3friends.eatcleanmenubackend.dto.IngredientDTO;
+import com.happy3friends.eatcleanmenubackend.dto.RecipeDTO;
 import com.happy3friends.eatcleanmenubackend.entity.DishEntity;
 import com.happy3friends.eatcleanmenubackend.entity.IngredientEntity;
+import com.happy3friends.eatcleanmenubackend.entity.RecipeEntity;
 import com.happy3friends.eatcleanmenubackend.exception.NotFoundException;
 import com.happy3friends.eatcleanmenubackend.mapper.DishMapper;
 import com.happy3friends.eatcleanmenubackend.mapper.IngredientMapper;
+import com.happy3friends.eatcleanmenubackend.mapper.RecipeMapper;
 import com.happy3friends.eatcleanmenubackend.repository.DishRepository;
 import com.happy3friends.eatcleanmenubackend.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,9 @@ public class DishServiceImpl implements DishService {
 
     @Autowired
     private IngredientMapper ingredientMapper;
+
+    @Autowired
+    private RecipeMapper recipeMapper;
 
     @Override
     public List<DishDTO> findAll() {
@@ -59,5 +65,19 @@ public class DishServiceImpl implements DishService {
         } else throw new NotFoundException("Can not find dish with dishId!");
 
         return result;
+    }
+
+    @Override
+    public List<RecipeDTO> findRecipesByDishId(int dishId) {
+        Optional<DishEntity> dishEntity = dishRepository.findById(dishId);
+
+        List<RecipeDTO> recipeDTOList;
+
+        if (dishEntity.isPresent()) {
+            List<RecipeEntity> recipeEntityList = dishEntity.get().getRecipesById().stream().collect(Collectors.toList());
+            recipeDTOList = recipeEntityList.stream().map(e -> recipeMapper.convertEntityToDTO(e)).collect(Collectors.toList());
+        } else throw new NotFoundException("Can not find dish with dishId!");
+
+        return recipeDTOList;
     }
 }

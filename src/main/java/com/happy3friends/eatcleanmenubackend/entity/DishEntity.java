@@ -33,4 +33,6 @@ public class DishEntity {
     private Collection<MenuDishEntity> menuDishesById;
     @OneToMany(mappedBy = "dishByDishId")
     private Collection<IngredientEntity> ingredientsById;
+    @OneToMany(mappedBy = "dishByDishId")
+    private Collection<RecipeEntity> recipesById;
 }

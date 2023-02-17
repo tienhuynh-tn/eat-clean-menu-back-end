@@ -2,6 +2,7 @@ package com.happy3friends.eatcleanmenubackend.controller;
 
 import com.happy3friends.eatcleanmenubackend.dto.DishDTO;
 import com.happy3friends.eatcleanmenubackend.dto.IngredientDTO;
+import com.happy3friends.eatcleanmenubackend.dto.RecipeDTO;
 import com.happy3friends.eatcleanmenubackend.dto.ResponseDTO;
 import com.happy3friends.eatcleanmenubackend.response.ResponseEntityBuilder;
 import com.happy3friends.eatcleanmenubackend.service.DishService;
@@ -82,9 +83,31 @@ public class DishController {
         Map<String, List<IngredientDTO>> ingredients = dishService.findIngredientsByDishId(dishId);
 
         return ResponseEntityBuilder.generateResponse(
-                "Find a dish by Id successfully!",
+                "Find all ingredients of a dish successfully!",
                 HttpStatus.OK,
                 ingredients
+        );
+    }
+
+    @ApiOperation(value = "Find all recipes of a dish")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 404, message = "Resource Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
+    @GetMapping(value = "/{dishId}/recipes", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResponseDTO<List<RecipeDTO>>> findRecipesByDishId(
+            @ApiParam(value = "A specific dish id",
+                    required = true,
+                    example = "1")
+            @PathVariable("dishId") int dishId) {
+
+        List<RecipeDTO> recipes = dishService.findRecipesByDishId(dishId);
+
+        return ResponseEntityBuilder.generateResponse(
+                "Find all recipes of a dish successfully!",
+                HttpStatus.OK,
+                recipes
         );
     }
 }
