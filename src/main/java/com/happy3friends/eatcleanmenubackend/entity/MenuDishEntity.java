@@ -7,6 +7,8 @@ import java.sql.Date;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name = "Menu_Dish", schema = "dbo", catalog = "ecm")
