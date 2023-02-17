@@ -1,5 +1,6 @@
 package com.happy3friends.eatcleanmenubackend.controller;
 
+import com.happy3friends.eatcleanmenubackend.dto.CustomUserDietaryInfoDTO;
 import com.happy3friends.eatcleanmenubackend.dto.UserDietaryInfoDTO;
 //import com.happy3friends.eatcleanmenubackend.security.TokenProvider;
 import com.happy3friends.eatcleanmenubackend.service.UserDietaryInfoService;
@@ -34,10 +35,10 @@ public class UserDietaryInfoController {
 //            @RequestHeader("Authorization") @ApiIgnore String bearerToken,
             @PathVariable("userId") int userId,
             @ApiParam(value = "A JSON value representing a User Dietary Info. Please remove id and userId in the example model below!!!")
-            @RequestBody UserDietaryInfoDTO userDietaryInfoDTO) {
+            @RequestBody CustomUserDietaryInfoDTO customUserDietaryInfoDTO) {
 
 //        int userId = tokenProvider.getUserIdFromToken(tokenProvider.getTokenFromBearerToken(bearerToken));
 
-        userDietaryInfoService.createUserDietaryInfoByUserId(userDietaryInfoDTO, userId);
+        userDietaryInfoService.createUserDietaryInfoByUserId(customUserDietaryInfoDTO, userId);
     }
 }

@@ -21,8 +21,8 @@ public class UsersEntity {
     @Column(name = "Fullname", nullable = false, length = 100)
     private String fullname;
     @Basic
-    @Column(name = "Gender", nullable = true)
-    private Boolean gender;
+    @Column(name = "Gender", nullable = true, length = 5)
+    private String gender;
     @Basic
     @Column(name = "DateOfBirth", nullable = true)
     private Date dateOfBirth;
@@ -51,7 +51,6 @@ public class UsersEntity {
     @Id
     @Column(name = "Id", nullable = false)
     private int id;
-
 //    @Enumerated(EnumType.STRING)
 //    @Transient private AuthProvider provider;
 //
