@@ -19,6 +19,7 @@ public class UserController {
 //    @Autowired
 //    private TokenProvider tokenProvider;
 
+    @ApiIgnore
     @ApiOperation(value = "Update User Subscription")
     @ApiResponses(value = {
             @ApiResponse(code = 204, message = "Update successfully, No-content"),

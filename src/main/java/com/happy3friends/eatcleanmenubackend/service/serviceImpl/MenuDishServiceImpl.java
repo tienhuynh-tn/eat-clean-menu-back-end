@@ -100,8 +100,8 @@ public class MenuDishServiceImpl implements MenuDishService {
             throw new NotFoundException("UserId: " + userId + " did not register for any subscription yet!");
 
         Date date = DateTimeUtil.convertStringToDate(mealDate);
-        if (!DateTimeUtil.checkDateBetweenMinMax(menuEntity.getMenuPeriodStartDate(), menuEntity.getMenuPeriodEndDate(), date))
-            throw new BadRequestException("MealDate: " + mealDate + " is out of subscription time!");
+        /*if (!DateTimeUtil.checkDateBetweenMinMax(menuEntity.getMenuPeriodStartDate(), menuEntity.getMenuPeriodEndDate(), date))
+            throw new BadRequestException("MealDate: " + mealDate + " is out of subscription time!");*/
 
         List<MenuDishEntity> menuDishEntity = menuDishRepository.findByMealDateAndMenuId(new java.sql.Date(date.getTime()), menuEntity.getId());
         List<MenuDishDTO> result = null;
