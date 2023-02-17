@@ -1,6 +1,6 @@
 package com.happy3friends.eatcleanmenubackend.entity;
 
-import com.happy3friends.eatcleanmenubackend.constants.AuthProvider;
+//import com.happy3friends.eatcleanmenubackend.constants.AuthProvider;
 import lombok.*;
 
 import javax.persistence.*;
@@ -52,10 +52,10 @@ public class UsersEntity {
     @Column(name = "Id", nullable = false)
     private int id;
 
-    @Enumerated(EnumType.STRING)
-    @Transient private AuthProvider provider;
-
-    @Transient private String providerId;
+//    @Enumerated(EnumType.STRING)
+//    @Transient private AuthProvider provider;
+//
+//    @Transient private String providerId;
     @Basic
     @Column(name = "SubscriptionType", nullable = true, length = 20)
     private String subscriptionType;

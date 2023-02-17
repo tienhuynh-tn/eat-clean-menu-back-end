@@ -23,20 +23,20 @@ spring:
     profiles:
         active: default,prod
         default: default
-    security:
-        oauth2:
-            client:
-                registration:
-                    google:
-                        client-id: 689087360577-dprcmf2povbac02t778360hkof2jvla6.apps.googleusercontent.com
-                        client-secret: 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
-                        redirect-uri: '{baseUrl}/oauth2/callback/{registrationId}'
-                        scope:
-                            - email
-                            - profile
-app:
-    auth:
-        tokenSecret: AD54AEBF234949FA7CC10A5F1D12A8AF8D22F4EA47DDC400C4DAE19C14932523pNMY6mJhUVe7Ou5DTp77OMu585lb0awp5vAncf2bZIiQpntC4cVIRp8cLxjQUq7
-        tokenExpirationMsec: 864000000
-    cors:
-        allowedOrigins: http://localhost:8081
+#    security:
+#        oauth2:
+#            client:
+#                registration:
+#                    google:
+#                        client-id: 689087360577-dprcmf2povbac02t778360hkof2jvla6.apps.googleusercontent.com
+#                        client-secret: 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
+#                        redirect-uri: '{baseUrl}/oauth2/callback/{registrationId}'
+#                        scope:
+#                            - email
+#                            - profile
+#app:
+#    auth:
+#        tokenSecret: AD54AEBF234949FA7CC10A5F1D12A8AF8D22F4EA47DDC400C4DAE19C14932523pNMY6mJhUVe7Ou5DTp77OMu585lb0awp5vAncf2bZIiQpntC4cVIRp8cLxjQUq7
+#        tokenExpirationMsec: 864000000
+#    cors:
+#        allowedOrigins: http://localhost:8081

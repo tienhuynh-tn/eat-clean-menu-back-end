@@ -5,11 +5,11 @@ spring:
         url: jdbc:sqlserver://localhost:1433;databaseName=ECM;instanceName=TIENHUYNHTN;encrypt=true;trustServerCertificate=true;
         username: sa
 
-app:
-    oauth2:
-        # After successfully authenticating with the OAuth2 Provider,
-        # we'll be generating an auth token for the user and sending the token to the
-        # redirectUri mentioned by the client in the /oauth2/authorize request.
-        # We're not using cookies because they won't work well in mobile clients.
-        authorizedRedirectUris:
-            - http://localhost:8081/api/v1/auth/login
+#app:
+#    oauth2:
+#        # After successfully authenticating with the OAuth2 Provider,
+#        # we'll be generating an auth token for the user and sending the token to the
+#        # redirectUri mentioned by the client in the /oauth2/authorize request.
+#        # We're not using cookies because they won't work well in mobile clients.
+#        authorizedRedirectUris:
+#            - http://localhost:8081/api/v1/auth/login

@@ -1,6 +1,6 @@
 package com.happy3friends.eatcleanmenubackend.controller;
 
-import com.happy3friends.eatcleanmenubackend.security.TokenProvider;
+//import com.happy3friends.eatcleanmenubackend.security.TokenProvider;
 import com.happy3friends.eatcleanmenubackend.service.UserService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +16,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private TokenProvider tokenProvider;
+//    @Autowired
+//    private TokenProvider tokenProvider;
 
     @ApiOperation(value = "Update User Subscription")
     @ApiResponses(value = {
@@ -26,14 +26,15 @@ public class UserController {
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
-    @PutMapping(value = "/subscriptionType")
+    @PutMapping(value = "/{userId}/subscriptionType")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void createUserSubscription(
-            @RequestHeader("Authorization") @ApiIgnore String bearerToken,
+//            @RequestHeader("Authorization") @ApiIgnore String bearerToken,
+            @PathVariable("userId") int userId,
             @ApiParam(value = "User Subscription Info.", example = "1 tháng")
             @RequestParam(name = "subscriptionType") String subscriptionType) {
 
-        int userId = tokenProvider.getUserIdFromToken(tokenProvider.getTokenFromBearerToken(bearerToken));
+//        int userId = tokenProvider.getUserIdFromToken(tokenProvider.getTokenFromBearerToken(bearerToken));
 
         userService.createUserSubscriptionByUserId(subscriptionType, userId);
     }

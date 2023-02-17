@@ -1,7 +1,7 @@
 package com.happy3friends.eatcleanmenubackend.controller;
 
 import com.happy3friends.eatcleanmenubackend.dto.UserDietaryInfoDTO;
-import com.happy3friends.eatcleanmenubackend.security.TokenProvider;
+//import com.happy3friends.eatcleanmenubackend.security.TokenProvider;
 import com.happy3friends.eatcleanmenubackend.service.UserDietaryInfoService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +18,8 @@ public class UserDietaryInfoController {
     @Autowired
     private UserDietaryInfoService userDietaryInfoService;
 
-    @Autowired
-    private TokenProvider tokenProvider;
+//    @Autowired
+//    private TokenProvider tokenProvider;
 
     @ApiOperation(value = "Create User Dietary Information")
     @ApiResponses(value = {
@@ -28,14 +28,15 @@ public class UserDietaryInfoController {
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
-    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void create(
-            @RequestHeader("Authorization") @ApiIgnore String bearerToken,
+//            @RequestHeader("Authorization") @ApiIgnore String bearerToken,
+            @PathVariable("userId") int userId,
             @ApiParam(value = "A JSON value representing a User Dietary Info. Please remove id and userId in the example model below!!!")
             @RequestBody UserDietaryInfoDTO userDietaryInfoDTO) {
 
-        int userId = tokenProvider.getUserIdFromToken(tokenProvider.getTokenFromBearerToken(bearerToken));
+//        int userId = tokenProvider.getUserIdFromToken(tokenProvider.getTokenFromBearerToken(bearerToken));
 
         userDietaryInfoService.createUserDietaryInfoByUserId(userDietaryInfoDTO, userId);
     }
