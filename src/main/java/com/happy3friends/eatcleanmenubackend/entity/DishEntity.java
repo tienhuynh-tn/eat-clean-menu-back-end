@@ -3,12 +3,13 @@ package com.happy3friends.eatcleanmenubackend.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Collection;
 
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "Dish", schema = "dbo", catalog = "ecm")
 public class DishEntity {
@@ -28,5 +29,8 @@ public class DishEntity {
     @Basic
     @Column(name = "Type", nullable = true, length = 10)
     private String type;
-
+    @OneToMany(mappedBy = "dishByDishId")
+    private Collection<MenuDishEntity> menuDishesById;
+    @OneToMany(mappedBy = "dishByDishId")
+    private Collection<IngredientEntity> ingredientsById;
 }

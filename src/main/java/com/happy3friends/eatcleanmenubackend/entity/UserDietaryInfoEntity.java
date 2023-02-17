@@ -36,5 +36,7 @@ public class UserDietaryInfoEntity {
     @Basic
     @Column(name = "UserId", nullable = false)
     private int userId;
-
+    @Basic
+    @Column(name = "CaloriesConsumed", nullable = true, precision = 0)
+    private Double caloriesConsumed;
 }

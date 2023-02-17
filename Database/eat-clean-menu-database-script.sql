@@ -23,15 +23,16 @@ CREATE TABLE [Users] (
 GO;
 
 CREATE TABLE [UserDietaryInfo] (
-   Id INT IDENTITY(1, 1) NOT NULL,
-   UserId INT NOT NULL,
-   DietTarget NVARCHAR(20) NOT NULL,
-   UserAge INT NOT NULL,
-   UserHeight FLOAT NOT NULL,
-   UserWeight FLOAT NOT NULL,
-   ActivityRate NVARCHAR(50) NOT NULL,
-   BMI FLOAT NOT NULL,
-   BMR FLOAT NOT NULL
+    Id INT IDENTITY(1, 1) NOT NULL,
+    UserId INT NOT NULL,
+    DietTarget NVARCHAR(20) NOT NULL,
+    UserAge INT NOT NULL,
+    UserHeight FLOAT NOT NULL,
+    UserWeight FLOAT NOT NULL,
+    ActivityRate NVARCHAR(50) NOT NULL,
+    BMI FLOAT NOT NULL,
+    BMR FLOAT NOT NULL,
+    CaloriesConsumed FLOAT NULL
 )
 GO;
 
@@ -75,7 +76,7 @@ CREATE TABLE [Ingredient] (
     Id INT IDENTITY(1, 1) NOT NULL,
     DishId INT NOT NULL,
     Name NVARCHAR(50) NOT NULL,
-    Quantity NVARCHAR(20) NOT NULL,
+    Quantity NVARCHAR(20) NULL,
     Type NVARCHAR(20) NOT NULL
 )
 GO;

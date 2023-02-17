@@ -1,6 +1,5 @@
 package com.happy3friends.eatcleanmenubackend.dto;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,4 +17,5 @@ public class UserDietaryInfoDTO {
     private double bmi;
     private double bmr;
     private int userId;
+    private Double caloriesConsumed;
 }

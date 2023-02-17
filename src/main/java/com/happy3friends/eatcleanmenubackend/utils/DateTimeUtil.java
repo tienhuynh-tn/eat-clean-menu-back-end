@@ -1,5 +1,8 @@
 package com.happy3friends.eatcleanmenubackend.utils;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -25,5 +28,19 @@ public class DateTimeUtil {
         cal.setTime(date);
         cal.add(Calendar.DATE, days); //minus number would decrement the days
         return cal.getTime();
+    }
+
+    public static Date convertStringToDate(String strDate) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            return df.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static boolean checkDateBetweenMinMax(Date min, Date max, Date date) {
+        return date.after(addDays(min, -1)) && date.before(addDays(max, 1));
     }
 }

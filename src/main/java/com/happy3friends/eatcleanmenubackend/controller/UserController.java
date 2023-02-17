@@ -21,7 +21,7 @@ public class UserController {
 
     @ApiOperation(value = "Update User Subscription")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 204, message = "Update successfully, No-content"),
             @ApiResponse(code = 400, message = "Bad request"),
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 500, message = "Internal Server Error")
