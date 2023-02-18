@@ -97,4 +97,16 @@ public class UserDietaryTrackingServiceImpl implements UserDietaryTrackingServic
 
         return responses;
     }
+
+    @Override
+    public CustomUserDietaryTrackingResponse getTrackingCaloriesByMonth(int userId) {
+        Timestamp now = DateTimeUtil.getTimestampNow();
+
+        CustomUserDietaryTrackingDTO monthCalories = userDietaryTrackingRepository.trackingCaloriesByMonth(userId, now);
+
+        CustomUserDietaryTrackingResponse response = new CustomUserDietaryTrackingResponse();
+        response.setCalories(monthCalories.getCalories());
+
+        return response;
+    }
 }

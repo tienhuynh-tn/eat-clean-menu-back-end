@@ -112,4 +112,28 @@ public class UserDietaryTrackingController {
                 customUserDietaryTrackingResponse
         );
     }
+
+    @ApiOperation(value = "Get User Dietary Tracking Calories By Month")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully"),
+            @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
+    @GetMapping(value = "/{userId}/user-calories/month")
+    public ResponseEntity<ResponseDTO<CustomUserDietaryTrackingResponse>> getUserCaloriesTrackingByMonth(
+//            @RequestHeader("Authorization") @ApiIgnore String bearerToken,
+            @ApiParam(value = "UserId", example = "3")
+            @PathVariable("userId") int userId) {
+
+//        int userId = tokenProvider.getUserIdFromToken(tokenProvider.getTokenFromBearerToken(bearerToken));
+
+        CustomUserDietaryTrackingResponse customUserDietaryTrackingResponse = userDietaryTrackingService.getTrackingCaloriesByMonth(userId);
+
+        return ResponseEntityBuilder.generateResponse(
+                "Get user calories tracking by month successfully!",
+                HttpStatus.OK,
+                customUserDietaryTrackingResponse
+        );
+    }
 }
