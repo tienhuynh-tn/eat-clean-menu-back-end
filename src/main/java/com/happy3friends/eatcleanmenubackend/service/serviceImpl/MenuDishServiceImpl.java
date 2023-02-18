@@ -52,10 +52,16 @@ public class MenuDishServiceImpl implements MenuDishService {
         double existedCalo = 0;
 
         while (count != 0) {
-            double minCalo = ((caloriesConsumed - existedCalo) / count) - ((caloriesConsumed - existedCalo) / count) * 10 / 100;
-            double maxCalo = ((caloriesConsumed - existedCalo) / count) + ((caloriesConsumed - existedCalo) / count) * 10 / 100;
+            double minCalo = ((caloriesConsumed - existedCalo) / count) - ((caloriesConsumed - existedCalo) / count) * 20 / 100;
+            double maxCalo = ((caloriesConsumed - existedCalo) / count) + ((caloriesConsumed - existedCalo) / count) * 20 / 100;
 
             DishEntity dishEntity = dishRepository.randomDishByCaloriesBetween(minCalo, maxCalo);
+            if (dishEntity == null) {
+                dishEntity = dishRepository.randomDishByCaloriesBetween(minCalo - minCalo * 45 / 100, maxCalo);
+                while (dishEntity == null) {
+                    dishEntity = dishRepository.randomDishByCaloriesBetween(minCalo - minCalo * 60 / 100, maxCalo);
+                }
+            }
             dishEntityList.add(dishEntity);
             existedCalo += dishEntity.getCalories();
             count--;
