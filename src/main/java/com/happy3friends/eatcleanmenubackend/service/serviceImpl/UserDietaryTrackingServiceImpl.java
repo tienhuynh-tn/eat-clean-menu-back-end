@@ -13,6 +13,7 @@ import com.happy3friends.eatcleanmenubackend.utils.DateTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +76,22 @@ public class UserDietaryTrackingServiceImpl implements UserDietaryTrackingServic
             response.setCalories(obj.getCalories());
             response.setMealTime(obj.getMealTime());
             response.setStatus(obj.getStatus());
+            return response;
+        }).collect(Collectors.toList());
+
+        return responses;
+    }
+
+    @Override
+    public List<CustomUserDietaryTrackingResponse> getTrackingCaloriesByWeek(int userId) {
+        Timestamp now = DateTimeUtil.getTimestampNow();
+
+        List<CustomUserDietaryTrackingDTO> list = userDietaryTrackingRepository.trackingCaloriesByWeek(userId, now);
+
+        List<CustomUserDietaryTrackingResponse> responses = list.stream().map(obj -> {
+            CustomUserDietaryTrackingResponse response = new CustomUserDietaryTrackingResponse();
+            response.setCalories(obj.getCalories());
+            response.setMealDate(obj.getMealDate());
             return response;
         }).collect(Collectors.toList());
 

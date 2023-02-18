@@ -9,4 +9,5 @@ public interface UserDietaryTrackingService {
     void createUserCaloriesTracking(int userId, double calories, int menuDishId);
     void createUserWeightTracking(int userId, double weight);
     List<CustomUserDietaryTrackingResponse> getTrackingCaloriesByDate(int userId);
+    List<CustomUserDietaryTrackingResponse> getTrackingCaloriesByWeek(int userId);
 }

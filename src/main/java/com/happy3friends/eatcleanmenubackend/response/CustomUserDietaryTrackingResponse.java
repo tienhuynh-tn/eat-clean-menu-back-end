@@ -13,4 +13,5 @@ public class CustomUserDietaryTrackingResponse {
     String mealTime;
     String status;
     double calories;
+    String mealDate;
 }

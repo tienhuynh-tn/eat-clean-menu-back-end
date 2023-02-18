@@ -89,7 +89,7 @@ public class UserDietaryTrackingController {
         );
     }
 
-    /*@ApiOperation(value = "Get User Dietary Tracking Calories By Week")
+    @ApiOperation(value = "Get User Dietary Tracking Calories By Week")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully"),
             @ApiResponse(code = 400, message = "Bad request"),
@@ -104,13 +104,12 @@ public class UserDietaryTrackingController {
 
 //        int userId = tokenProvider.getUserIdFromToken(tokenProvider.getTokenFromBearerToken(bearerToken));
 
-
-        List<CustomUserDietaryTrackingResponse> customUserDietaryTrackingResponse = userDietaryTrackingService.getTrackingCaloriesByDate(userId);
+        List<CustomUserDietaryTrackingResponse> customUserDietaryTrackingResponse = userDietaryTrackingService.getTrackingCaloriesByWeek(userId);
 
         return ResponseEntityBuilder.generateResponse(
-                "Get user calories tracking by date successfully!",
+                "Get user calories tracking by week successfully!",
                 HttpStatus.OK,
                 customUserDietaryTrackingResponse
         );
-    }*/
+    }
 }

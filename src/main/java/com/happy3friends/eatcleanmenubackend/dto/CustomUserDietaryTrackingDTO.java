@@ -4,4 +4,5 @@ public interface CustomUserDietaryTrackingDTO {
     String getMealTime();
     String getStatus();
     double getCalories();
+    String getMealDate();
 }
