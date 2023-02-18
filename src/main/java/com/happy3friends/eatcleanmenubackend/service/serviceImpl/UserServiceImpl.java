@@ -1,5 +1,6 @@
 package com.happy3friends.eatcleanmenubackend.service.serviceImpl;
 
+import com.happy3friends.eatcleanmenubackend.dto.UserDTO;
 import com.happy3friends.eatcleanmenubackend.entity.MenuEntity;
 import com.happy3friends.eatcleanmenubackend.entity.UsersEntity;
 import com.happy3friends.eatcleanmenubackend.exception.BadRequestException;
@@ -58,5 +59,22 @@ public class UserServiceImpl implements UserService {
         existed.get().setSubscriptionType(subscriptionType);
         existed.get().setSubscriptionDate(new Date(DateTimeUtil.getDateNow().getTime()));
         userRepository.save(existed.get());
+    }
+
+    @Override
+    public int login(UserDTO user) {
+        Optional<UsersEntity> users = userRepository.findByGmail(user.getGmail());
+
+        if (!users.isPresent()) {
+            UsersEntity usersEntity = new UsersEntity();
+            usersEntity.setGmail(user.getGmail());
+            usersEntity.setAvatar(user.getAvatar());
+            usersEntity.setFullname(user.getFullname());
+            userRepository.save(usersEntity);
+
+            users = userRepository.findByGmail(user.getGmail());
+        }
+
+        return users.get().getId();
     }
 }
