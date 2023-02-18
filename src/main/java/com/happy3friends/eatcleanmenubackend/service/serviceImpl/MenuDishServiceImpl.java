@@ -96,8 +96,11 @@ public class MenuDishServiceImpl implements MenuDishService {
     public List<MenuDishDTO> getMenuDishByMealDateAndUserId(String mealDate, int userId) {
         MenuEntity menuEntity = menuRepository.findByUserId(userId);
 
-        if (menuEntity == null)
-            throw new NotFoundException("UserId: " + userId + " did not register for any subscription yet!");
+        if (menuEntity == null) {
+            MenuEntity menu = new MenuEntity();
+            menu.setUserId(userId);
+            menuRepository.save(menu);
+        }
 
         Date date = DateTimeUtil.convertStringToDate(mealDate);
         /*if (!DateTimeUtil.checkDateBetweenMinMax(menuEntity.getMenuPeriodStartDate(), menuEntity.getMenuPeriodEndDate(), date))
