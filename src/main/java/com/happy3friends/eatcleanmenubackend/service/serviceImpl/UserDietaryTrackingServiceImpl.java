@@ -43,4 +43,19 @@ public class UserDietaryTrackingServiceImpl implements UserDietaryTrackingServic
         entity.setDatetime(DateTimeUtil.getTimestampNow());
         userDietaryTrackingRepository.save(entity);
     }
+
+    @Override
+    public void createUserWeightTracking(int userId, double weight) {
+        Optional<UsersEntity> users = userRepository.findById(userId);
+
+        if (users.isPresent())
+            if (users.get() == null) throw new NotFoundException("Can not find user with userId: " + userId);
+
+        UserDietaryTrackingEntity entity = new UserDietaryTrackingEntity();
+        entity.setUserWeight(weight);
+        entity.setUserId(userId);
+        // TODO: set date from menu_dish and time depend on meal time
+        entity.setDatetime(DateTimeUtil.getTimestampNow());
+        userDietaryTrackingRepository.save(entity);
+    }
 }

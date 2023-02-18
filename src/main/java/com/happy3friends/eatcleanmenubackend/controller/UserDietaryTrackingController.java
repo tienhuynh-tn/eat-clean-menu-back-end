@@ -29,11 +29,32 @@ public class UserDietaryTrackingController {
 //            @RequestHeader("Authorization") @ApiIgnore String bearerToken,
             @ApiParam(value = "UserId", example = "3")
             @PathVariable("userId") int userId,
-            @ApiParam(value = "Information fo user dietary tracking")
+            @ApiParam(value = "Information for user dietary tracking")
             @RequestBody CustomUserDietaryTrackingRequest request) {
 
 //        int userId = tokenProvider.getUserIdFromToken(tokenProvider.getTokenFromBearerToken(bearerToken));
 
         userDietaryTrackingService.createUserCaloriesTracking(userId, request.getUserCalories(), request.getMenuDishId());
+    }
+
+    @ApiOperation(value = "Create User Dietary Tracking Weight")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
+    @PostMapping(value = "/{userId}/user-weight")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createUserWeightTracking(
+//            @RequestHeader("Authorization") @ApiIgnore String bearerToken,
+            @ApiParam(value = "UserId", example = "3")
+            @PathVariable("userId") int userId,
+            @ApiParam(value = "User Weight", example = "55")
+            @RequestParam(value = "weight") double weight) {
+
+//        int userId = tokenProvider.getUserIdFromToken(tokenProvider.getTokenFromBearerToken(bearerToken));
+
+        userDietaryTrackingService.createUserWeightTracking(userId, weight);
     }
 }
