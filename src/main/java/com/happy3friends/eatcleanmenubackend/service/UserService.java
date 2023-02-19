@@ -5,5 +5,5 @@ import com.happy3friends.eatcleanmenubackend.dto.UserDTO;
 public interface UserService {
     void createUserSubscriptionByUserId(String subscriptionType, int userId);
     int login(UserDTO user);
-    UserDTO get(int userId);
+    UserDTO get(String gmail);
 }

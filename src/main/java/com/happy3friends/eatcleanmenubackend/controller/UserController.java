@@ -59,11 +59,11 @@ public class UserController {
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
-    @GetMapping(value = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{gmail}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseDTO<UserDTO>> get(
 //            @RequestHeader("Authorization") @ApiIgnore String bearerToken,
             @ApiParam(value = "User Id.")
-            @PathVariable int userId) {
+            @PathVariable String gmail) {
 
 //        int userId = tokenProvider.getUserIdFromToken(tokenProvider.getTokenFromBearerToken(bearerToken));
 
@@ -72,7 +72,7 @@ public class UserController {
 //        Map<String, Integer> response = new HashMap<>();
 //        response.put("userId", userId);
 
-        UserDTO response = userService.get(userId);
+        UserDTO response = userService.get(gmail);
 
         return ResponseEntityBuilder.generateResponse(
                 "Login successfully!",

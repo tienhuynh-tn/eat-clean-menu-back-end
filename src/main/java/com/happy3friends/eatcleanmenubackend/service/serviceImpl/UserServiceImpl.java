@@ -80,11 +80,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO get(int userId) {
-        Optional<UsersEntity> entity = userRepository.findById(userId);
+    public UserDTO get(String gmail) {
+        Optional<UsersEntity> entity = userRepository.findByGmail(gmail);
         UserDTO res = new UserDTO();
 
-        if (!entity.isPresent()) throw new NotFoundException("Cannot find user with ID: " + userId);
+        if (!entity.isPresent()) throw new NotFoundException("Cannot find user with gmail: " + gmail);
         else {
             UserDTO dto = new UserDTO();
             dto.setId(entity.get().getId());
