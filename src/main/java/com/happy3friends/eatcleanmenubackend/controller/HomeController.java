@@ -12,6 +12,6 @@ public class HomeController {
     @ApiOperation(value = "Home")
     @GetMapping(value = "/")
     public String home() {
-        return "Hello Eat Clean Menu - tienhuynh-tn";
+        return "Hello 123 Eat Clean Menu - tienhuynh-tn";
     }
 }
