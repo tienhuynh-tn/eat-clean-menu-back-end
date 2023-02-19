@@ -53,6 +53,34 @@ public class UserController {
         );
     }
 
+    @ApiOperation(value = "User Info")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
+    @GetMapping(value = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResponseDTO<UserDTO>> get(
+//            @RequestHeader("Authorization") @ApiIgnore String bearerToken,
+            @ApiParam(value = "User Id.")
+            @PathVariable int userId) {
+
+//        int userId = tokenProvider.getUserIdFromToken(tokenProvider.getTokenFromBearerToken(bearerToken));
+
+//        //int userId = userService.login(user);
+//
+//        Map<String, Integer> response = new HashMap<>();
+//        response.put("userId", userId);
+
+        UserDTO response = userService.get(userId);
+
+        return ResponseEntityBuilder.generateResponse(
+                "Login successfully!",
+                HttpStatus.OK,
+                response
+        );
+    }
+
     @ApiIgnore
     @ApiOperation(value = "Update User Subscription")
     @ApiResponses(value = {

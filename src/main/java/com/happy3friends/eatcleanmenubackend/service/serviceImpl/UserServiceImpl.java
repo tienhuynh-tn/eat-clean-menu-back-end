@@ -4,6 +4,7 @@ import com.happy3friends.eatcleanmenubackend.dto.UserDTO;
 import com.happy3friends.eatcleanmenubackend.entity.MenuEntity;
 import com.happy3friends.eatcleanmenubackend.entity.UsersEntity;
 import com.happy3friends.eatcleanmenubackend.exception.BadRequestException;
+import com.happy3friends.eatcleanmenubackend.exception.NotFoundException;
 import com.happy3friends.eatcleanmenubackend.repository.MenuRepository;
 import com.happy3friends.eatcleanmenubackend.repository.UserRepository;
 import com.happy3friends.eatcleanmenubackend.service.UserService;
@@ -76,5 +77,23 @@ public class UserServiceImpl implements UserService {
         }
 
         return users.get().getId();
+    }
+
+    @Override
+    public UserDTO get(int userId) {
+        Optional<UsersEntity> entity = userRepository.findById(userId);
+        UserDTO res = new UserDTO();
+
+        if (!entity.isPresent()) throw new NotFoundException("Cannot find user with ID: " + userId);
+        else {
+            UserDTO dto = new UserDTO();
+            dto.setId(entity.get().getId());
+            dto.setGmail(entity.get().getGmail());
+            dto.setFullname(entity.get().getFullname());
+            dto.setAvatar(entity.get().getAvatar());
+            res = dto;
+        }
+
+        return res;
     }
 }

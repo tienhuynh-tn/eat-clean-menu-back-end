@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO {
+    private int id;
     private String gmail;
     private String fullname;
     private String avatar;
