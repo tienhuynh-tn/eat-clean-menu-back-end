@@ -21,7 +21,7 @@ spring:
         path match:
             matching-strategy: ANT_PATH_MATCHER
     profiles:
-        active: default,phuongdev
+        active: default,prod
         default: default
 #    security:
 #        oauth2:

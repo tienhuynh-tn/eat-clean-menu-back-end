@@ -1,8 +1,10 @@
 spring:
     datasource:
-        password: tien-phuong-12345
-        url: jdbc:sqlserver://ecm-happy-3-friends.database.windows.net:1433;database=ecm;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
-        username: admin-ecm@ecm-happy-3-friends
+        password: H3fadmin
+        url: jdbc:sqlserver://ecm-tienhuynh-tn.database.windows.net:1433;database=ECM;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+        username: ecm-sa@ecm-tienhuynh-tn
+
+# jdbc:sqlserver://ecm-tienhuynh-tn.database.windows.net:1433;database=ECM;user=ecm-sa@ecm-tienhuynh-tn;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
 
 #app:
 #    oauth2:
