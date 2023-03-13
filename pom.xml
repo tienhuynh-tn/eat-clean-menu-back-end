@@ -149,6 +149,20 @@
             </properties>
         </profile>
         <profile>
+            <id>phuongdev</id>
+            <build>
+                <finalName>ecm-backend-dev</finalName>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                </resources>
+            </build>
+            <properties>
+                <spring.profiles.active>phuongdev</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
             <id>prod</id>
             <build>
                 <finalName>ecm-back-end</finalName>
