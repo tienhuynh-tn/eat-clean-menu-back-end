@@ -33,6 +33,6 @@ public class MenuDishEntity {
     @Column(name = "Status", nullable = true, length = 20)
     private String status;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "DishId", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "DishId", referencedColumnName = "Id", insertable = false, updatable = false)
     private DishEntity dishByDishId;
 }

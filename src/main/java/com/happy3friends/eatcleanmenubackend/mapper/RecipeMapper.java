@@ -1,8 +1,6 @@
 package com.happy3friends.eatcleanmenubackend.mapper;
 
-import com.happy3friends.eatcleanmenubackend.dto.IngredientDTO;
 import com.happy3friends.eatcleanmenubackend.dto.RecipeDTO;
-import com.happy3friends.eatcleanmenubackend.entity.IngredientEntity;
 import com.happy3friends.eatcleanmenubackend.entity.RecipeEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

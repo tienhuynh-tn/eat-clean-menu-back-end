@@ -4,7 +4,11 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 @Entity
 @Table(name = "UserDietaryInfo", schema = "dbo", catalog = "ecm")
 public class UserDietaryInfoEntity {

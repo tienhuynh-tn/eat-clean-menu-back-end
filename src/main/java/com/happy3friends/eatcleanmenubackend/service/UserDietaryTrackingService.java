@@ -1,6 +1,5 @@
 package com.happy3friends.eatcleanmenubackend.service;
 
-import com.happy3friends.eatcleanmenubackend.dto.CustomUserDietaryTrackingDTO;
 import com.happy3friends.eatcleanmenubackend.response.CustomUserDietaryTrackingResponse;
 
 import java.util.List;

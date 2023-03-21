@@ -3,13 +3,13 @@ package com.happy3friends.eatcleanmenubackend.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "UserDietaryTracking", schema = "dbo", catalog = "ecm")
 public class UserDietaryTrackingEntity {

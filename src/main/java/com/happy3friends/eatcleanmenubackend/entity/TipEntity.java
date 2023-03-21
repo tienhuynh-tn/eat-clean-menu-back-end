@@ -5,7 +5,11 @@ import lombok.*;
 import javax.persistence.*;
 import java.sql.Date;
 
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 @Entity
 @Table(name = "Tip", schema = "dbo", catalog = "ecm")
 public class TipEntity {

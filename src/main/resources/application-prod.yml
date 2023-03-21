@@ -6,11 +6,13 @@ spring:
 
 # jdbc:sqlserver://ecm-tienhuynh-tn.database.windows.net:1433;database=ECM;user=ecm-sa@ecm-tienhuynh-tn;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
 
-#app:
-#    oauth2:
-#        # After successfully authenticating with the OAuth2 Provider,
-#        # we'll be generating an auth token for the user and sending the token to the
-#        # redirectUri mentioned by the client in the /oauth2/authorize request.
-#        # We're not using cookies because they won't work well in mobile clients.
-#        authorizedRedirectUris:
-#            - https://ecm-eat-clean-menu.azurewebsites.net/api/v1/auth/login
+logging:
+    level:
+        root: info
+        com.happy3friends.toiletmapbackend.service: error
+    file:
+        path: logs
+        name: ${logging.file.path}/mylog.log
+    pattern:
+        file: "[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5level [%t] [%c{1}] %logger{0}.%M:%line - %msg%n"
+        console: "%highlight([%-5level]):%yellow([%d{yyyy-MM-dd HH:mm:ss.SSS}])[%blue(%t)]%cyan([%c{1}]):[%green(%line)]:%boldMagenta(%X{path}) - %m %n"

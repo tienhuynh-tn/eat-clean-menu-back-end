@@ -1,18 +1,17 @@
 package com.happy3friends.eatcleanmenubackend.entity;
 
-//import com.happy3friends.eatcleanmenubackend.constants.AuthProvider;
 import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
 
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Entity
-@Table(name = "Users", schema = "dbo", catalog = "ecm")
+@Table(name = "Users", schema = "dbo", catalog = "ECM")
 public class UsersEntity {
     @Basic
     @Column(name = "Gmail", nullable = false, length = 100)
@@ -51,11 +50,10 @@ public class UsersEntity {
     @Id
     @Column(name = "Id", nullable = false)
     private int id;
-//    @Enumerated(EnumType.STRING)
-//    @Transient private AuthProvider provider;
-//
-//    @Transient private String providerId;
     @Basic
     @Column(name = "SubscriptionType", nullable = true, length = 20)
     private String subscriptionType;
+    @Basic
+    @Column(name = "Password", nullable = true, length = 60)
+    private String password;
 }

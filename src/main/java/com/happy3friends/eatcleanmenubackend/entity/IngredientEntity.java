@@ -8,6 +8,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "Ingredient", schema = "dbo", catalog = "ecm")
 public class IngredientEntity {
@@ -29,6 +31,6 @@ public class IngredientEntity {
     @Column(name = "Type", nullable = false, length = 20)
     private String type;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "DishId", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "DishId", referencedColumnName = "Id", insertable = false, updatable = false)
     private DishEntity dishByDishId;
 }
