@@ -4,15 +4,21 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
+import java.util.Objects;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
+@Setter
+@Getter
 @Entity
 @Table(name = "Users", schema = "dbo", catalog = "ECM")
 public class UsersEntity {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
+    private int id;
     @Basic
     @Column(name = "Gmail", nullable = false, length = 100)
     private String gmail;
@@ -20,14 +26,14 @@ public class UsersEntity {
     @Column(name = "Fullname", nullable = false, length = 100)
     private String fullname;
     @Basic
-    @Column(name = "Gender", nullable = true, length = 5)
-    private String gender;
-    @Basic
     @Column(name = "DateOfBirth", nullable = true)
     private Date dateOfBirth;
     @Basic
     @Column(name = "Phone", nullable = true, length = 10)
     private String phone;
+    @Basic
+    @Column(name = "Gender", nullable = true, length = 10)
+    private String gender;
     @Basic
     @Column(name = "Address", nullable = true, length = 200)
     private String address;
@@ -46,14 +52,16 @@ public class UsersEntity {
     @Basic
     @Column(name = "SubscriptionDate", nullable = true)
     private Date subscriptionDate;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id", nullable = false)
-    private int id;
     @Basic
     @Column(name = "SubscriptionType", nullable = true, length = 20)
     private String subscriptionType;
     @Basic
     @Column(name = "Password", nullable = true, length = 60)
     private String password;
+    @OneToMany(mappedBy = "usersByUserId")
+    private Collection<MenuEntity> menusById;
+    @OneToMany(mappedBy = "usersByUserId")
+    private Collection<UserDietaryInfoEntity> userDietaryInfosById;
+    @OneToMany(mappedBy = "usersByUserId")
+    private Collection<UserDietaryTrackingEntity> userDietaryTrackingsById;
 }

@@ -5,13 +5,13 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Collection;
 
-@Getter
-@Setter
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
+@Getter
+@Setter
 @Entity
-@Table(name = "Dish", schema = "dbo", catalog = "ecm")
+@Table(name = "Dish", schema = "dbo", catalog = "ECM")
 public class DishEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -30,9 +30,10 @@ public class DishEntity {
     @Column(name = "Type", nullable = true, length = 10)
     private String type;
     @OneToMany(mappedBy = "dishByDishId")
-    private Collection<MenuDishEntity> menuDishesById;
-    @OneToMany(mappedBy = "dishByDishId")
     private Collection<IngredientEntity> ingredientsById;
     @OneToMany(mappedBy = "dishByDishId")
+    private Collection<MenuDishEntity> menuDishesById;
+    @OneToMany(mappedBy = "dishByDishId")
     private Collection<RecipeEntity> recipesById;
+
 }

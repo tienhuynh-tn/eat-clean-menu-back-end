@@ -7,11 +7,11 @@ import java.sql.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @EqualsAndHashCode
+@Setter
+@Getter
 @Entity
-@Table(name = "Tip", schema = "dbo", catalog = "ecm")
+@Table(name = "Tip", schema = "dbo", catalog = "ECM")
 public class TipEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

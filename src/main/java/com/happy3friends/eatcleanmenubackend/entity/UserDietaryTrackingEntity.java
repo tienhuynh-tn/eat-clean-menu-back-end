@@ -3,20 +3,24 @@ package com.happy3friends.eatcleanmenubackend.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
+@Setter
+@Getter
 @Entity
-@Table(name = "UserDietaryTracking", schema = "dbo", catalog = "ecm")
+@Table(name = "UserDietaryTracking", schema = "dbo", catalog = "ECM")
 public class UserDietaryTrackingEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "Id", nullable = false)
     private int id;
+    @Basic
+    @Column(name = "UserId", nullable = false)
+    private int userId;
     @Basic
     @Column(name = "Datetime", nullable = false)
     private Timestamp datetime;
@@ -26,8 +30,8 @@ public class UserDietaryTrackingEntity {
     @Basic
     @Column(name = "UserCalories", nullable = true, precision = 0)
     private Double userCalories;
-    @Basic
-    @Column(name = "UserId", nullable = false)
-    private int userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "UserId", referencedColumnName = "Id", insertable = false, updatable = false)
+    private UsersEntity usersByUserId;
 
 }

@@ -4,13 +4,13 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
-@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
+@Setter
+@Getter
 @Entity
-@Table(name = "Recipe", schema = "dbo", catalog = "ecm")
+@Table(name = "Recipe", schema = "dbo", catalog = "ECM")
 public class RecipeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -28,4 +28,5 @@ public class RecipeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DishId", referencedColumnName = "Id", insertable = false, updatable = false)
     private DishEntity dishByDishId;
+
 }
