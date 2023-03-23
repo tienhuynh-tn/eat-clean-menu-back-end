@@ -41,7 +41,7 @@
 - Azure App Service
 
 **5. Tool**
-  - Visual Studio 2022
+  - Visual Studio Code
   - IntelliJ IDEA 2022.1.1
   - Figma
   - Swagger API Documentation
