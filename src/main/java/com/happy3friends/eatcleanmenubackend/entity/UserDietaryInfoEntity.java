@@ -4,14 +4,21 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+@Setter
+@Getter
 @Entity
-@Table(name = "UserDietaryInfo", schema = "dbo", catalog = "ecm")
+@Table(name = "UserDietaryInfo", schema = "dbo", catalog = "ECM")
 public class UserDietaryInfoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "Id", nullable = false)
     private int id;
+    @Basic
+    @Column(name = "UserId", nullable = false)
+    private int userId;
     @Basic
     @Column(name = "DietTarget", nullable = false, length = 20)
     private String dietTarget;
@@ -34,9 +41,10 @@ public class UserDietaryInfoEntity {
     @Column(name = "BMR", nullable = false, precision = 0)
     private double bmr;
     @Basic
-    @Column(name = "UserId", nullable = false)
-    private int userId;
-    @Basic
     @Column(name = "CaloriesConsumed", nullable = true, precision = 0)
     private Double caloriesConsumed;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "UserId", referencedColumnName = "Id", insertable = false, updatable = false)
+    private UsersEntity usersByUserId;
+
 }

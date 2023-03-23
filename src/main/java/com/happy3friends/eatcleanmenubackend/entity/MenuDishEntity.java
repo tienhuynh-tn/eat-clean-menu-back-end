@@ -5,13 +5,13 @@ import lombok.*;
 import javax.persistence.*;
 import java.sql.Date;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
+@Setter
+@Getter
 @Entity
-@Table(name = "Menu_Dish", schema = "dbo", catalog = "ecm")
+@Table(name = "Menu_Dish", schema = "dbo", catalog = "ECM")
 public class MenuDishEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -33,6 +33,10 @@ public class MenuDishEntity {
     @Column(name = "Status", nullable = true, length = 20)
     private String status;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "DishId", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "MenuId", referencedColumnName = "Id", insertable = false, updatable = false)
+    private MenuEntity menuByMenuId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DishId", referencedColumnName = "Id", insertable = false, updatable = false)
     private DishEntity dishByDishId;
+
 }

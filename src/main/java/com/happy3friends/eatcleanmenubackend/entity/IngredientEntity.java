@@ -1,15 +1,16 @@
 package com.happy3friends.eatcleanmenubackend.entity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
 @EqualsAndHashCode
+@Setter
+@Getter
 @Entity
-@Table(name = "Ingredient", schema = "dbo", catalog = "ecm")
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "Ingredient", schema = "dbo", catalog = "ECM")
 public class IngredientEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -21,14 +22,14 @@ public class IngredientEntity {
     @Basic
     @Column(name = "Name", nullable = false, length = 50)
     private String name;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @Basic
-    @Column(name = "Quantity", nullable = false, length = 20)
+    @Column(name = "Quantity", nullable = true, length = 20)
     private String quantity;
     @Basic
     @Column(name = "Type", nullable = false, length = 20)
     private String type;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "DishId", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "DishId", referencedColumnName = "Id", insertable = false, updatable = false)
     private DishEntity dishByDishId;
+
 }

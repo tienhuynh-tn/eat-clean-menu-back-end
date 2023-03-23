@@ -15,7 +15,9 @@ import com.happy3friends.eatcleanmenubackend.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,12 +56,13 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public Map<String, List<IngredientDTO>> findIngredientsByDishId(int dishId) {
-        Optional<DishEntity> dishEntity = dishRepository.findById(dishId);
+
+        DishEntity dishEntity = dishRepository.findDishesWithIngredientByDishId(dishId);
 
         Map<String, List<IngredientDTO>> result;
 
-        if (dishEntity.isPresent()) {
-            List<IngredientEntity> ingredientEntityList = dishEntity.get().getIngredientsById().stream().collect(Collectors.toList());
+        if (dishEntity != null) {
+            List<IngredientEntity> ingredientEntityList = dishEntity.getIngredientsById().stream().collect(Collectors.toList());
             List<IngredientDTO> ingredientDTOList = ingredientEntityList.stream().map(e -> ingredientMapper.convertEntityToDTO(e)).collect(Collectors.toList());
             result = ingredientDTOList.stream().collect(Collectors.groupingBy(IngredientDTO::getType));
         } else throw new NotFoundException("Can not find dish with dishId!");
@@ -69,12 +72,12 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public List<RecipeDTO> findRecipesByDishId(int dishId) {
-        Optional<DishEntity> dishEntity = dishRepository.findById(dishId);
+        DishEntity dishEntity = dishRepository.findDishesWithRecipeByDishId(dishId);
 
         List<RecipeDTO> recipeDTOList;
 
-        if (dishEntity.isPresent()) {
-            List<RecipeEntity> recipeEntityList = dishEntity.get().getRecipesById().stream().collect(Collectors.toList());
+        if (dishEntity != null) {
+            List<RecipeEntity> recipeEntityList = dishEntity.getRecipesById().stream().collect(Collectors.toList());
             recipeDTOList = recipeEntityList.stream().map(e -> recipeMapper.convertEntityToDTO(e)).collect(Collectors.toList());
         } else throw new NotFoundException("Can not find dish with dishId!");
 
