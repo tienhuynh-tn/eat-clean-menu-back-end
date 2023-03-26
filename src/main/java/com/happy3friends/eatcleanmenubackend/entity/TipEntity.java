@@ -5,9 +5,13 @@ import lombok.*;
 import javax.persistence.*;
 import java.sql.Date;
 
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+@Setter
+@Getter
 @Entity
-@Table(name = "Tip", schema = "dbo", catalog = "ecm")
+@Table(name = "Tip", schema = "dbo", catalog = "ECM")
 public class TipEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

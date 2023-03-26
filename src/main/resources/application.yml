@@ -1,7 +1,6 @@
 server:
     port: 8081
-    servlet:
-        context-path: /api/v1
+
 spring:
     jpa:
         hibernate:
@@ -14,29 +13,22 @@ spring:
                 dialect: org.hibernate.dialect.SQLServer2012Dialect
                 format_sql: false
         show-sql: false
-
-    messages:
-        basename: i18n/messages
+        open-in-view: false
     mvc:
         path match:
             matching-strategy: ANT_PATH_MATCHER
     profiles:
-        active: default,phuongdev
+        active: default,prod
         default: default
-#    security:
-#        oauth2:
-#            client:
-#                registration:
-#                    google:
-#                        client-id: 689087360577-dprcmf2povbac02t778360hkof2jvla6.apps.googleusercontent.com
-#                        client-secret: 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
-#                        redirect-uri: '{baseUrl}/oauth2/callback/{registrationId}'
-#                        scope:
-#                            - email
-#                            - profile
-#app:
-#    auth:
-#        tokenSecret: AD54AEBF234949FA7CC10A5F1D12A8AF8D22F4EA47DDC400C4DAE19C14932523pNMY6mJhUVe7Ou5DTp77OMu585lb0awp5vAncf2bZIiQpntC4cVIRp8cLxjQUq7
-#        tokenExpirationMsec: 864000000
-#    cors:
-#        allowedOrigins: http://localhost:8081
+
+springdoc:
+    packages-to-scan: com.happy3friends.eatcleanmenubackend.controller
+    default-consumes-media-type: application/json
+    default-produces-media-type: application/json
+    model-and-view-allowed: false
+    swagger-ui:
+        operations-sorter: method
+        tags-sorter: alpha
+        try-it-out-enabled: true
+        filter: true
+        default-models-expand-depth: -1

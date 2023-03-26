@@ -11,6 +11,4 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<UsersEntity, Integer> {
     @Query(value = "SELECT * FROM [Users] WHERE Gmail = :email", nativeQuery = true)
     Optional<UsersEntity> findByGmail(String email);
-
-    Boolean existsByGmail(String email);
 }

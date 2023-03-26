@@ -6,7 +6,6 @@ import com.happy3friends.eatcleanmenubackend.dto.RecipeDTO;
 import com.happy3friends.eatcleanmenubackend.dto.ResponseDTO;
 import com.happy3friends.eatcleanmenubackend.response.ResponseEntityBuilder;
 import com.happy3friends.eatcleanmenubackend.service.DishService;
-import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,19 +19,12 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/dishes")
-@Api(value = "Dish API", description = "Provides Dish API's", tags = "Dish API")
+@RequestMapping(value = "/api/dishes")
 public class DishController {
 
     @Autowired
     private DishService dishService;
 
-    @ApiOperation(value = "Find all dishes")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success"),
-            @ApiResponse(code = 404, message = "Resource Not Found"),
-            @ApiResponse(code = 500, message = "Internal Server Error")
-    })
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseDTO<List<DishDTO>>> findAll() {
 
@@ -45,17 +37,8 @@ public class DishController {
         );
     }
 
-    @ApiOperation(value = "Find a dish")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success"),
-            @ApiResponse(code = 404, message = "Resource Not Found"),
-            @ApiResponse(code = 500, message = "Internal Server Error")
-    })
     @GetMapping(value = "/{dishId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseDTO<DishDTO>> findById(
-            @ApiParam(value = "A specific dish id",
-                    required = true,
-                    example = "1")
             @PathVariable("dishId") int dishId) {
 
         DishDTO dishDTO = dishService.findById(dishId);
@@ -67,17 +50,8 @@ public class DishController {
         );
     }
 
-    @ApiOperation(value = "Find all ingredients of a dish")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success"),
-            @ApiResponse(code = 404, message = "Resource Not Found"),
-            @ApiResponse(code = 500, message = "Internal Server Error")
-    })
     @GetMapping(value = "/{dishId}/ingredients", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseDTO<Map<String, List<IngredientDTO>>>> findIngredientsByDishId(
-            @ApiParam(value = "A specific dish id",
-                    required = true,
-                    example = "1")
             @PathVariable("dishId") int dishId) {
 
         Map<String, List<IngredientDTO>> ingredients = dishService.findIngredientsByDishId(dishId);
@@ -89,17 +63,8 @@ public class DishController {
         );
     }
 
-    @ApiOperation(value = "Find all recipes of a dish")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success"),
-            @ApiResponse(code = 404, message = "Resource Not Found"),
-            @ApiResponse(code = 500, message = "Internal Server Error")
-    })
     @GetMapping(value = "/{dishId}/recipes", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseDTO<List<RecipeDTO>>> findRecipesByDishId(
-            @ApiParam(value = "A specific dish id",
-                    required = true,
-                    example = "1")
             @PathVariable("dishId") int dishId) {
 
         List<RecipeDTO> recipes = dishService.findRecipesByDishId(dishId);
