@@ -2,6 +2,8 @@
 
 :wave: Welcome to my FPT ENTREPRENEURIAL HACKATHON SPRING 2023 - CUỘC THI KHỞI NGHIỆP DÀNH CHO SINH VIÊN FPTU Project :wave:
 
+:point_right: [Live Demo](https://youtu.be/BIgDRwC9Yi4?si=SjXD8KVBBSlEAwEg) :point_left:
+
 ## Table of Contents
 - [Description](#description)
 - [Preview Screenshot](#preview-screenshot)
@@ -72,6 +74,7 @@
 -| 3.1| [UI Design](https://www.figma.com/proto/FzTW9gXTRo53RzKKgxVrp4/Eat-Clean?node-id=13-1257&scaling=scale-down&page-id=0%3A1&starting-point-node-id=13%3A1257) | UI design on Figma
 -| 3.2| [UI Design Screenshot](https://github.com/tienhuynh-tn/eat-clean-menu-back-end/tree/main/UI) | UI Design Screenshot
 4| -| [Document](https://github.com/tienhuynh-tn/eat-clean-menu-back-end/blob/main/Document/ECM%20-%20Th%E1%BB%B1c%20%C4%91%C6%A1n%20Eat%20Clean%20cho%20ng%C6%B0%E1%BB%9Di%20Vi%E1%BB%87t.pdf) | Document includes Requirement and other useful information
+5| -| [Live Demo](https://youtu.be/BIgDRwC9Yi4?si=SjXD8KVBBSlEAwEg) | Live Demo
 
 ## Contributors
 **1. Mentors:**
