@@ -2,7 +2,7 @@
 
 :wave: Welcome to my FPT ENTREPRENEURIAL HACKATHON SPRING 2023 - CUỘC THI KHỞI NGHIỆP DÀNH CHO SINH VIÊN FPTU Project :wave:
 
-:point_right: [Live Demo](https://youtu.be/BIgDRwC9Yi4?si=SjXD8KVBBSlEAwEg) :point_left:
+:point_right: [Live Demo Here](https://youtu.be/BIgDRwC9Yi4?si=SjXD8KVBBSlEAwEg) :point_left:
 
 ## Table of Contents
 - [Description](#description)
